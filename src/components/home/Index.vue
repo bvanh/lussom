@@ -1,19 +1,24 @@
 <template>
   <div>
     <slide />
-     <!-- <img
-        class="slider-container"
-        src="../../assets/header/slide1.png"
-      /> -->
+    <section2 />
+    <section3 />
+    <section4 />
   </div>
 </template>
 
 <script>
 import Slide from "./Slide";
+import section2 from "./section2";
+import section3 from "./section3";
+import section4 from "./section4";
 export default {
   name: "Index",
   components: {
-    Slide
+    Slide,
+    section2,
+    section3,
+    section4
   }
 };
 </script>

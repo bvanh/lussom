@@ -1,0 +1,67 @@
+<template>
+  <div fxFlexAlign="center" fxLayout="column" class="section4">
+  <div
+    fxFlexAlign="center"
+    fxLayout="column"
+    style="text-align: center; padding: 0rem 10% 3rem 10%;"
+    fxFlex="40"
+    class="section4-title-container"
+  >
+    <span class="section-title"
+      >Tuyển dụng <span style="color: #1499df;">Lussom</span></span
+    >
+    <div class="section-title-content">
+      Chúng tôi luôn chào đón các ứng viên có hoài bão, mong muốn được làm việc
+      trong môi trường quốc tế chuyên nghiệp, năng động và sáng tạo. Nếu bạn có
+      khát vọng đổi thay, đừng ngần ngại tham gia cùng chúng tôi để chinh phục
+      những đỉnh cao mới.
+    </div>
+  </div>
+  <!-- <owl-carousel-o [options]="customOptions" class="carousel-jobs">
+    <ng-container *ngFor="let slide of jobs">
+      <ng-template carouselSlide [id]="slide.id">
+         <img [src]="slide.src" [alt]="slide.alt" [title]="slide.title" />
+        <div class="slide-jobs">
+          <h3 style="font-weight: 600;">
+            {{ slide.name }}
+          </h3>
+          <span
+            *ngIf="checkTimestamp(slide.expried)"
+            class="stick-new"
+            style="margin: 0.5rem 0 0 0;"
+            >new</span
+          >
+          <span
+            *ngIf="checkTimestampExpried(slide.expried)"
+            style="margin: 0.5rem 0 0 0;"
+            class="stick-expried"
+            >Hết hạn</span
+          >
+          <p style="margin-top:6px">Vị trí trống: {{ slide.vacancies }}</p>
+          <p>Kinh nghiệm: {{ slide.experience }}</p>
+          <p>Bộ phận: {{ slide.categories }}</p>
+          <p>Ngày hết hạn: {{ slide.expried | date: "dd-MM-yyyy" }}</p>
+          <button
+            mat-button
+            class="btn-read-more-job"
+            routerLink="/careers/detail/{{ slide.id }}"
+          >
+            Read more >>
+          </button>
+        </div>
+      </ng-template>
+    </ng-container>
+  </owl-carousel-o> -->
+</div>
+
+</template>
+
+<script>
+export default {
+
+}
+</script>
+
+<style>
+
+</style>
