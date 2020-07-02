@@ -2,13 +2,16 @@
   <div id="app">
     <Header />
     <router-view />
+    <Footer />
   </div>
 </template>
 <script>
 import Header from "./components/Header";
+import Footer from "./components/Footer";
 export default {
   components: {
-    Header
+    Header,
+    Footer
   }
 };
 </script>
@@ -27,7 +30,7 @@ export default {
   -moz-osx-font-smoothing: grayscale;
   text-align: center;
   color: #2c3e50;
-  background: #fafafa
+  background: #fafafa;
 }
 /* css button menu */
 .cross-style {
@@ -48,5 +51,4 @@ export default {
     display: none;
   }
 }
-
 </style>

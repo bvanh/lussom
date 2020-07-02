@@ -1,28 +1,5 @@
 <template>
   <div class="slide-wraper">
-    <!-- <a-carousel dotsClass="dots-control" :after-change="onChange" autoplay>
-    <a slot="customPaging" slot-scope="props">
-      <img :src="getImgUrl(props.i)" />
-    </a>
-    <div v-for="item in carouselItems" :key="item.id">
-      <div
-        class="slider-container"
-        :style="{
-          backgroundImage: getBackgroundUrl(item.img),
-        }"
-      >
-        <div>
-          <div>
-            <div>
-              <h3 class="slide-title">{{ item.title }}</h3>
-              <span class="slide-content">{{ item.content }}</span>
-              <span class="slide-content-mobile">{{ item.contentMobile }}</span>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-    </a-carousel>-->
     <swiper :options="swiperOptions">
       <swiper-slide
         class="slider-container"

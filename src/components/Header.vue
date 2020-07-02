@@ -20,7 +20,7 @@
           <router-link style="outline: none;" to="/news">TIN TỨC</router-link>
         </li>
         <li>
-          <router-link style="outline: none;" to="/carreers">TUYỂN DỤNG</router-link>
+          <router-link style="outline: none;" to="/careers">TUYỂN DỤNG</router-link>
         </li>
         <li>
           <router-link style="outline: none;" to="/about">LIÊN HỆ</router-link>
