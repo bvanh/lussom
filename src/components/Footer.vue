@@ -1,8 +1,8 @@
 <template>
   <div class="footer">
-    <mat-toolbar fxFlexAlign="space-between">
-      <div fxFlex="50" fxFlexAlign="space-between" class="footer-info">
-        <div fxFlex="100">
+    <a-row type="flex" justify="space-between">
+      <a-col class="footer-info" :lg="{span:16}" :md="{span:24}">
+        <div>
           <p>Công ty trách nghiệm hữu hạn Lussom Co.Ltd.</p>
           <p>
             Địa chỉ: Tầng 4, Tòa nhà Eurowindow, Phố Trần Duy Hưng, Phường Trung
@@ -13,12 +13,12 @@
           <p>Chịu trách nghiệm nội dung: Shin Dongseok.</p>
           <p>Giấy phép cung cấp dịch vụ trò chơi điện tử G1 trên mạng sô 69/GP-BTTTT do Bộ Thông tin và Truyền thông cấp ngày 26/02/2020.</p>
         </div>
-        <div fxFlex="100" class="logo" style="display: flex; align-items: center;">
-          <img :src="importImgHeader('logoLussom.png')" width="100%" />
+        <div class="logo">
+          <img :src="importImgHeader('logoLussom.png')" />
           <p style="margin: 0;">Copyright ©2020 Lussom. All Rights Reserved.</p>
         </div>
-      </div>
-      <div class="footer-menu" fxFlex="50">
+      </a-col>
+      <a-col class="footer-menu" :lg="{span:8}">
         <ul class="navigation-items">
           <li routerLink="/home" routerLinkActive="isNav-active">
             <a>TRANG CHỦ</a>
@@ -33,8 +33,8 @@
             <a>LIÊN HỆ</a>
           </li>
         </ul>
-      </div>
-    </mat-toolbar>
+      </a-col>
+    </a-row>
   </div>
 </template>
 
@@ -50,8 +50,9 @@ export default {
 };
 </script>
 
-<style scoped>
+<style lang='scss' scoped>
 /* @import url("https://fonts.googleapis.com/css2?family=Source+Sans+Pro:ital,wght@0,200;0,300;0,600;0,700;1,200;1,400;1,700&display=swap"); */
+$desktop: "(max-width: 1440px)";
 a {
   text-decoration: none;
   color: lightgray;
@@ -91,25 +92,21 @@ li {
 }
 .footer {
   background: #1a80b6;
-}
-mat-toolbar {
-  z-index: 2;
-  max-width: 1440px;
-  background: #1a80b6;
-  margin: 0 auto;
-  font-weight: bold;
-  height: 100%;
-  align-items: baseline;
-}
-/* mat-toolbar>div{
-  max-width: 1440px;
-  margin: 0 auto;
-  display: flex;
-  justify-content: space-between;
-} */
-.footer-info {
-  display: flex;
-  flex-direction: column;
+  div {
+    z-index: 2;
+    max-width: 1440px;
+    background: #1a80b6;
+    margin: 0 auto;
+    font-weight: bold;
+    height: 100%;
+    align-items: baseline;
+    @media #{$desktop} {
+      max-width: 90%;
+    }
+  }
+  div:first-child {
+    text-align: start;
+  }
 }
 .footer-info > div:first-of-type {
   font-size: 1rem;
@@ -121,11 +118,14 @@ mat-toolbar {
   display: flex;
   justify-content: flex-end;
 }
-.logo > p {
-  font-size: 1rem;
-  font-weight: 400;
-  color: white;
-  margin-left: 1rem !important;
+.logo {
+  display: flex;
+  p {
+    font-size: 1rem;
+    font-weight: 400;
+    color: white;
+    margin-left: 1rem !important;
+  }
 }
 .coppyright {
   font-size: 1rem;
@@ -166,16 +166,19 @@ mat-toolbar {
     padding-left: 1rem;
   }
   .logo {
-    max-width: 25% !important;
+    // max-width: 25% !important;
+    img{
+      width: 25%;
+    }
   }
   mat-toolbar {
     padding: 0 !important;
   }
 }
 @media only screen and (min-width: 601px) {
-  .logo {
-    max-width: 15% !important;
-  }
+  // .logo {
+  //   max-width: 15% !important;
+  // }
   .footer-menu {
     /* margin-right: 2rem; */
   }

@@ -129,7 +129,7 @@ export default {
   },
   created() {
     const params = this.params;
-    getDataJobs(this, "recruitments", params);
+    getDataJobs(this, "/recruitments", params);
   }
 };
 </script>
