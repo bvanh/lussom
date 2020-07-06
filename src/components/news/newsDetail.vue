@@ -23,19 +23,27 @@
           }"
         ></div>
       </div>
-      <a-col>
-        <vue-markdown style="margin-top: 1rem;" class="news-detail-content">
-          {{
-          newsDetail.content
-          }}
-        </vue-markdown>
-        <!--   <div class="tags-container">
+      <a-col :md="16" align="left">
+        <vue-markdown style="margin-top: 1rem;" class="news-detail-content">{{ newsDetail.content }}</vue-markdown>
+        <div class="tags-container">
           <span class="tags">
             <span></span>
             Tags
           </span>
           <span class="tags-name">{{ newsDetail.categories[0].title }}</span>
         </div>
+        <ShareNetwork
+          network="facebook"
+          url="http://demo1259.surge.sh"
+          title="Say hi to Vite! A brand new, extremely fast development setup for Vue."
+          description="This week, I’d like to introduce you to 'Vite', which means 'Fast'. It’s a brand new development setup created by Evan You."
+          quote="The hot reload is so fast it\'s near instant. - Evan You"
+          hashtags="vuejs,vite"
+          media="https://api.lussom.vn/uploads/Capture45_1dcfc4d8f3.png"
+        >
+          <img src="../../assets/news/btn_share.png" width="100px"/>
+        </ShareNetwork>
+        <!--
         <iframe
           [src]="urlSafe"
           width="77"
@@ -48,40 +56,39 @@
         ></iframe>-->
         <h2 style="border-top: 1px solid #e2dfdf; padding-top: 1rem;">Bài viết liên quan</h2>
         <a-row class="news-relate">
-          <div
-            v-for="(item,index) in newsByCategories"
+          <a-col
+            v-for="(item, i) in newsByCategories"
             :key="item.id"
-            fxFlex.gt-xs="50%"
+            :span="12"
             style="padding: 0.5rem;"
           >
             <div
               class="news-relate-items"
-              :if="index < 4"
+              :if="i < 4"
               :style="{
-            'backgroundImage':backgroundImage(api.API_ROOT,item.banner.url)
-          }"
+                backgroundImage: getBackgroundElement(
+                  api.API_ROOT,
+                  item.banner.url
+                ),
+              }"
             >
-              <router-link :to="{path:'/news/detail',query:{newsId:item.id}}">
+              <router-link :to="{ path: '/news/detail', query: { newsId: item.id } }">
                 <h3 @click="getDetailNewsFrom(item.id)" style="cursor: pointer;">{{ item.title }}</h3>
               </router-link>
               <span class="news-date">{{ convertDate(item.created_at) }}</span>
             </div>
-            <img
-              *ngIf="i < 4"
+            <!-- <img
+              :if="i < 4"
               src="http://171.244.141.231:1337/uploads/2e52282cc54444e2a1669511f130de29.png"
               width="100%"
-            />
-            <a (click)="getNewsFromRoute(item.id)" *ngIf="i < 4">
-              {{
-              item.name
-              }}
-            </a>
-          </div>
+            />-->
+            <a @click="getNewsFromRoute(item.id)" :if="i < 4">{{ item.name }}</a>
+          </a-col>
         </a-row>
       </a-col>
-      <!-- <a-col fxFlex="30%" style="padding: 0 1rem;" fxHide.lt-md>
+      <a-col :md="8" style="padding: 0 1rem;" align='left'>
         <h2>Bài viết gần đây</h2>
-        <div v-for="item of newsByCategory" :key="item.id">
+        <div v-for="item of newsByCategories" :key="item.id">
           <div class="news-newest" fxFlex="row">
             <img :src="api.API_ROOT + item.thumbnail.url" width="30%" />
             <div
@@ -99,7 +106,7 @@
             </div>
           </div>
         </div>
-      </a-col> -->
+      </a-col>
     </a-row>
   </div>
 </template>
@@ -138,7 +145,7 @@ export default {
     VueMarkdown
   },
   created() {
-    const newsId = this.$router.currentRoute.query.newsId;
+    const newsId = this.$router.currentRoute.params.newsId;
     getDetailNews(this, newsId);
   }
 };

@@ -10,15 +10,15 @@
       </div>
     </div>
     <a-row class="list-news">
-      <a-col v-for="item in listNews" :key="item.id" class="news-items" :lg="{ span: 6 }">
-        <router-link :to="{ path: '/news/detail', query: { newsId: item.id }}">
+      <a-col v-for="item in listNews" :key="item.id" class="news-items" :sm="{ span: 6 }">
+        <router-link :to="{ name: 'newsDetail', params: { newsId: item.id }}">
           <img :src="api.API_ROOT + item.thumbnail.url" width="100%" style="cursor: pointer;" />
           <h3 style="cursor: pointer;">{{ item.title }}</h3>
         </router-link>
         <p class="short-content">{{ item.shortContent }}</p>
         <a-row class="news-footer" justify="space-between" type="flex">
           <div class="news-footer-date">{{ convertDate(item.created_at)}}</div>
-          <router-link :to="{ path: '/news/detail', query: { newsId: item.id }}">
+          <router-link :to="{ name: 'newsDetail', params: { newsId: item.id }}">
             <div class="news-footer-readmore">
               <img src="../../assets/news/icon-book.png" />Read more
             </div>
@@ -29,6 +29,7 @@
     <!-- <div class="pagination">
       <pagination-controls (pageChange)="getPage($event)" class="pagination-items"></pagination-controls>
     </div>-->
+    <!-- <router-view/> -->
   </div>
 </template>
 

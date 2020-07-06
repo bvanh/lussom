@@ -4,6 +4,9 @@ import router from './router'
 import Antd from 'ant-design-vue';
 import VueAwesomeSwiper from 'vue-awesome-swiper';
 import 'ant-design-vue/dist/antd.css';
+import VueSocialSharing from 'vue-social-sharing'
+ 
+Vue.use(VueSocialSharing);
 
 Vue.use(VueAwesomeSwiper)
 Vue.use(Antd);

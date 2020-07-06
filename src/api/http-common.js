@@ -56,4 +56,5 @@ const getNewsByCategories = (thisObj, categoriesId) => {
         alertError(statusCode, message);
     })
 }
+
 export { getDataJobs, getDataNews, getDetailNews };

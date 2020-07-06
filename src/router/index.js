@@ -3,6 +3,8 @@ import VueRouter from 'vue-router'
 import Home from '../views/Home.vue'
 import News from '../views/News.vue'
 import newsDetail from '../components/news/newsDetail.vue'
+import Careers from '../components/careers/Careers.vue'
+import JobDetail from '../components/careers/JobDetail.vue'
 
 Vue.use(VueRouter)
 
@@ -15,12 +17,22 @@ const routes = [
   {
     path: '/news',
     name: 'News',
-    component: News
+    component: News,
   },
   {
-    path: '/news/detail',
-    name: 'NewsDetail',
+    path: '/news/:newsId',
+    name: 'newsDetail',
     component: newsDetail
+  },
+  {
+    path: '/careers',
+    name: 'careers',
+    component: Careers,
+  },
+  {
+    path: "/careers/:jobsId",
+    name: "jobDetail",
+    component: JobDetail
   },
   {
     path: '/about',
