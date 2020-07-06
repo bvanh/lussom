@@ -105,27 +105,34 @@ td.mat-cell:last-of-type {
     width: 15%;
   }
 }
+.pagination-jobs {
+  margin: 1rem 0 !important;
+  .ant-pagination-item {
+    border-radius: 100% !important;
+    margin: 0 1rem !important;
+  }
+}
 .stick-new {
-    background: #ffc13c;
-    padding: 0.15rem 0.7rem;
-    border-radius: 4px;
-    margin-left: 1rem;
-    color: white;
-    font-size: 0.8rem;
-    font-weight: 400;
-    @media (max-width: 1080px) {
-      margin: 0;
-    }
+  background: #ffc13c;
+  padding: 0.15rem 0.7rem;
+  border-radius: 4px;
+  margin-left: 1rem;
+  color: white;
+  font-size: 0.8rem;
+  font-weight: 400;
+  @media (max-width: 1080px) {
+    margin: 0;
   }
-  .stick-expried {
-    background: #b8b7b5;
-    padding: 0.15rem 0.7rem;
-    border-radius: 4px;
-    margin-left: 1rem;
-    color: white;
-    font-size: 0.8rem;
-    font-weight: 400;
-    @media (max-width: 1080px) {
-      margin: 0;
-    }
+}
+.stick-expried {
+  background: #b8b7b5;
+  padding: 0.15rem 0.7rem;
+  border-radius: 4px;
+  margin-left: 1rem;
+  color: white;
+  font-size: 0.8rem;
+  font-weight: 400;
+  @media (max-width: 1080px) {
+    margin: 0;
   }
+}

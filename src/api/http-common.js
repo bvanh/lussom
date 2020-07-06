@@ -22,6 +22,18 @@ const getDataJobs = (thisObj, path, params) => {
             alertError(statusCode, message);
         });
 }
+const getTotalJobs = (thisObj, path, params) => {
+    baseApi
+        .get(path, { params })
+        .then(response => {
+            thisObj.totalJobs = response.data;
+            // console.log(response.data)
+        })
+        .catch(e => {
+            const { statusCode, message } = e.response.data;
+            alertError(statusCode, message);
+        });
+}
 const getDataNews = (thisObj, path, params) => {
     baseApi
         .get(path, { params })
@@ -57,4 +69,4 @@ const getNewsByCategories = (thisObj, categoriesId) => {
     })
 }
 
-export { getDataJobs, getDataNews, getDetailNews };
+export { getDataJobs, getDataNews, getDetailNews,getTotalJobs };

@@ -84,7 +84,7 @@
       <tr mat-header-row *matHeaderRowDef="displayedColumns; sticky: true"></tr>
       <tr mat-row *matRowDef="let row; columns: displayedColumns"></tr>
       </table>-->
-      <a-table :columns="columns" :data-source="newsJobs" class="table-jobs">
+      <a-table :columns="columns" :data-source="newsJobs" class="table-jobs" :pagination="false">
         <span slot="time" slot-scope="text">
           {{ convertDateStr(text) }}
           <span v-if="checkTimestamp(text)" class="stick-new">new</span>
@@ -103,13 +103,13 @@
           >{{ text }}</router-link>
         </span>
       </a-table>
-      <a-pagination :item-render="itemRender" :total="500" @change="onChangePageJobs" />
+      <a-pagination :item-render="itemRender" :total="totalJobs" @change="onChangePageJobs" class="pagination-jobs" />
     </div>
   </div>
 </template>
 
 <script>
-import { getDataJobs } from "../../api/http-common";
+import { getDataJobs, getTotalJobs } from "../../api/http-common";
 import {
   convertDate,
   checkTimestampExpried,
@@ -142,6 +142,7 @@ export default {
   data() {
     return {
       newsJobs: [],
+      totalJobs:null,
       columns: columns,
       params: {
         _limit: 10,
@@ -160,22 +161,25 @@ export default {
       return checkTimestamp(strDate);
     },
     itemRender(current, type, originalElement) {
-      if (type === 'prev') {
+        console.log(current, type, originalElement)
+      if (type === "prev") {
         return <a>Previous</a>;
-      } else if (type === 'next') {
+      } else if (type === "next") {
         return <a>Next</a>;
       }
       return originalElement;
     },
-    onChangePageJobs(page){
-        console.log(page)
+    onChangePageJobs(page) {
+      console.log(page);
     }
   },
   created() {
     const params = this.params;
     getDataJobs(this, "/recruitments", params);
+    getTotalJobs(this, "/recruitments/count", params);
   }
 };
 </script>
 
-<style src="./style/carees.scss" lang="scss"></style>
+<style src="./style/carees.scss" lang="scss">
+</style>
