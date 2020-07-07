@@ -93,7 +93,7 @@
 
         <span slot="name" slot-scope="text, record">
           <router-link
-            :to="{ name: 'jobDetail', params: { jobsId: record.id } }"
+            :to="{ name: 'jobsDetail', params: { jobsId: record.id } }"
             style="
             cursor: pointer;
             color: #3e95c5;
@@ -103,7 +103,12 @@
           >{{ text }}</router-link>
         </span>
       </a-table>
-      <a-pagination :item-render="itemRender" :total="totalJobs" @change="onChangePageJobs" class="pagination-jobs" />
+      <a-pagination
+        :item-render="itemRender"
+        :total="totalJobs"
+        @change="onChangePageJobs"
+        class="pagination-jobs"
+      />
     </div>
   </div>
 </template>
@@ -142,7 +147,7 @@ export default {
   data() {
     return {
       newsJobs: [],
-      totalJobs:null,
+      totalJobs: null,
       columns: columns,
       params: {
         _limit: 10,
@@ -161,7 +166,6 @@ export default {
       return checkTimestamp(strDate);
     },
     itemRender(current, type, originalElement) {
-        console.log(current, type, originalElement)
       if (type === "prev") {
         return <a>Previous</a>;
       } else if (type === "next") {
@@ -170,16 +174,37 @@ export default {
       return originalElement;
     },
     onChangePageJobs(page) {
-      console.log(page);
+      const newParams = this.params;
+      if (page === 1) {
+        newParams._start = 0;
+      } else {
+        newParams._start = (page / 2) * 10;
+      }
+      this.params = newParams;
     }
   },
+  watch: {
+    params: {
+      deep: true,
+      handler() {
+        getDataJobs(this, "/recruitments", this.params);
+      }
+    }
+  },
+  // computed: {
+  //   getDataJobs() {
+  //     let data1 = [];
+  //     const data = getDataJobs(this, "/recruitments", this.params);
+  //     data.then(dataJobs => (data1 = dataJobs));
+  //     return data1;
+  //   }
+  // },
   created() {
     const params = this.params;
-    getDataJobs(this, "/recruitments", params);
+    getDataJobs(this, "/recruitments", this.params);
     getTotalJobs(this, "/recruitments/count", params);
   }
 };
 </script>
 
-<style src="./style/carees.scss" lang="scss">
-</style>
+<style src="./style/carees.scss" lang="scss"></style>

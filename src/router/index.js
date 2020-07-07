@@ -31,7 +31,7 @@ const routes = [
   },
   {
     path: "/careers/:jobsId",
-    name: "jobDetail",
+    name: "jobsDetail",
     component: JobDetail
   },
   {

@@ -6,17 +6,16 @@
         <p>Các vị trí đang tuyển dụng của Lussom. Hãy xem có vị trí nào phù hợp với năng lực và nguyện vọng của bạn không nhé!</p>
       </div>
     </div>
-
-    <div fxLayout="row wrap" class="detail-container">
-      <div fxFlex="69%" fxFlex.lt-md="100%" style="margin-right: 1%;" class="job-require">
+    <a-row  class="detail-container">
+      <a-col style="margin-right: 1%;" class="job-require">
         <div class="frame">
           <h2>Why should you apply for this position</h2>
-          <div [innerHTML]="jobsDetail.reason"></div>
+          <vue-markdown>{{jobsDetail.reason}}</vue-markdown>
           <h2>Jobs Description</h2>
-          <div [innerHTML]="jobsDetail.description"></div>
+          <vue-markdown>{{jobDetail.description}}</vue-markdown>
           <h2>Your Skill and Experience</h2>
-          <div [innerHTML]="jobsDetail.Skill"></div>
-          <div class="form-apply">
+          <vue-markdown>{{jobDetail.Skill}}</vue-markdown>
+          <!-- <div class="form-apply">
             <span class="input-cv">
               Full name*
               <input
@@ -50,10 +49,10 @@
                 required
               />
             </span>
-            <!-- <div class=”button-wrap”>
+            <div class=”button-wrap”>
         <label class =”new-button” for=”upload”> Upload CV</label>
         <input id=”upload” type=”file” >
-            </div>-->
+            </div>
             <span class="attact-cv">
               Resume/CV*
               <div>
@@ -87,14 +86,14 @@
             </div>
           </div>
         </div>
-        <h2>More Jobs For You</h2>
-        <div class="jobs-relate" *ngFor="let item of jobs">
+          <h2>More Jobs For You</h2>-->
+          <!--   <div class="jobs-relate" *ngFor="let item of jobs">
           <span
             (click)="getJobsFromRoute(item.id)"
             class="title"
           >{{ item.name }}</span>
           <span style="padding-left: 1rem; border-left: 1px solid #b5b5b5;">
-            <!-- {{ item.expried | date: "dd-MM-yyyy" }} -->
+            {{ item.expried | date: "dd-MM-yyyy" }}
             <span
               *ngIf="checkTimestamp(item.expried)"
               class="stick-new"
@@ -116,15 +115,31 @@
             {{ jobsDetail.location }}
           </div>
           <h3>{{ jobsDetail.vacancies }} Vị trí còn trống.</h3>
-          <h3>{{ jobsDetail.experience }}+ Năm kinh nghiệm.</h3>
+          <h3>{{ jobsDetail.experience }}+ Năm kinh nghiệm.</h3>-->
         </div>
-      </div>
-    </div>
+      </a-col>
+    </a-row>
   </div>
 </template>
 
 <script>
-export default {};
+import { getDetailJobs } from "../../api/http-common";
+import VueMarkdown from "vue-markdown";
+export default {
+  name: "JobsDetail",
+  data() {
+    return {
+      jobDetail: {}
+    };
+  },
+  created() {
+    const jobsId = this.$router.currentRoute.params.jobsId;
+    getDetailJobs(this, jobsId);
+  },
+  components: {
+    VueMarkdown
+  }
+};
 </script>
 
 <style src='./style/detail.scss' lang='scss'>
