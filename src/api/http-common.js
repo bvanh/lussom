@@ -85,5 +85,19 @@ const getNewsByCategories = (thisObj, categoriesId) => {
       alertError(statusCode, message);
     });
 };
+// upload data
+const uploadCv = (thisObj, path, file) => {
+  let formData = new FormData();
+  formData.append('files', file)
+  baseApi.post(path, formData, {
+    headers: {
+      'Content-Type': 'multipart/form-data'
+    }
+  }).then(res => {
+    console.log(res)
+  }).catch(e => {
+    console.log(e.response)
+  })
+}
 
-export { getDataJobs, getDataNews, getDetailNews, getTotalJobs, getDetailJobs };
+export { getDataJobs, getDataNews, getDetailNews, getTotalJobs, getDetailJobs, uploadCv };

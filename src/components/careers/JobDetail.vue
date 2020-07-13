@@ -3,27 +3,30 @@
     <div class="news-header">
       <div>
         <h2>TUYỂN DỤNG</h2>
-        <p>Các vị trí đang tuyển dụng của Lussom. Hãy xem có vị trí nào phù hợp với năng lực và nguyện vọng của bạn không nhé!</p>
+        <p>
+          Các vị trí đang tuyển dụng của Lussom. Hãy xem có vị trí nào phù hợp
+          với năng lực và nguyện vọng của bạn không nhé!
+        </p>
       </div>
     </div>
-    <a-row  class="detail-container">
-      <a-col style="margin-right: 1%;" class="job-require">
+    <a-row class="detail-container" type="flex" justify="space-between">
+      <a-col :md="18" class="job-require">
         <div class="frame">
           <h2>Why should you apply for this position</h2>
-          <vue-markdown>{{jobsDetail.reason}}</vue-markdown>
+          <vue-simple-markdown :source="jobDetail.reason"></vue-simple-markdown>
           <h2>Jobs Description</h2>
-          <vue-markdown>{{jobDetail.description}}</vue-markdown>
+          <vue-simple-markdown :source="jobDetail.description"></vue-simple-markdown>
           <h2>Your Skill and Experience</h2>
-          <vue-markdown>{{jobDetail.Skill}}</vue-markdown>
-          <!-- <div class="form-apply">
+          <vue-simple-markdown :source="jobDetail.Skill"></vue-simple-markdown>
+          <div class="form-apply">
             <span class="input-cv">
               Full name*
               <input
                 placeholder="Your name"
                 name="name"
                 required
-                [(ngModel)]="applications.name"
-                (keyup)="getCv($event)"
+                :value="applications.name"
+                @input="getData($event)"
               />
             </span>
             <span class="input-cv">
@@ -32,8 +35,8 @@
                 placeholder="Your Email"
                 type="email"
                 name="email"
-                [(ngModel)]="applications.email"
-                (keyup)="getCv($event)"
+                :value="applications.email"
+                @input="getData($event)"
                 required
               />
             </span>
@@ -44,15 +47,11 @@
                 placeholder="Your number"
                 name="phone"
                 type="number"
-                [(ngModel)]="applications.phone"
-                (keyup)="getCv($event)"
+                :value="applications.phone"
+                @input="getData($event)"
                 required
               />
             </span>
-            <div class=”button-wrap”>
-        <label class =”new-button” for=”upload”> Upload CV</label>
-        <input id=”upload” type=”file” >
-            </div>
             <span class="attact-cv">
               Resume/CV*
               <div>
@@ -62,7 +61,7 @@
                 </label>
                 <span>
                   {{
-                  fileToUpload === null ? "Chưa chọn tập tin..." : fileToUpload.name
+                  applications.cv === null ? "Chưa chọn tập tin..." : applications.cv.name
                   }}
                 </span>
               </div>
@@ -72,21 +71,18 @@
                 type="file"
                 name="cv"
                 accept=".pdf, .docx"
-                [(ngModel)]="fileToUpload"
-                (change)="onFileChange($event)"
-                observeFiles
+                @input="getFileCv($event)"
                 style="display: none;"
               />
             </span>
             <div class="submit-btn">
               <div style="width: 50%;">
-                <button (click)="onSubmitCv()" class="submit-btn-ok">Submit Now</button>
-                <button (click)="clearInputCv()" class="submit-btn-cancel">Clear</button>
+                <button @click="onSubmitCv" class="submit-btn-ok">Submit Now</button>
+                <button @click="onClearCv" class="submit-btn-cancel">Clear</button>
               </div>
             </div>
           </div>
-        </div>
-          <h2>More Jobs For You</h2>-->
+          <!-- <h2>More Jobs For You</h2>-->
           <!--   <div class="jobs-relate" *ngFor="let item of jobs">
           <span
             (click)="getJobsFromRoute(item.id)"
@@ -99,23 +95,24 @@
               class="stick-new"
             >new</span>
           </span>
+          </div>-->
         </div>
-      </div>
-      <div fxFlex="30%" fxFlex.lt-md="100%" class="job-more-info">
+      </a-col>
+      <a-col :md="6" class="job-more-info">
         <div>
-          <h2>{{ jobsDetail.title }}</h2>
+          <!-- <h2>{{ jobsDetail.title }}</h2> -->
           <div class="salary">
             <img src="../../assets/detail/salary-icon.png" class="icon-salary" />
             <h3>Salary:</h3>
-            Up to {{ jobsDetail.salary }} $
+            Up to {{ jobDetail.salary }} $
           </div>
           <div class="location">
             <img src="../../assets/detail/location-icon.png" class="icon-salary" />
             <h3>Address:</h3>
-            {{ jobsDetail.location }}
+            {{ jobDetail.location }}
           </div>
-          <h3>{{ jobsDetail.vacancies }} Vị trí còn trống.</h3>
-          <h3>{{ jobsDetail.experience }}+ Năm kinh nghiệm.</h3>-->
+          <h3>{{ jobDetail.vacancies }} Vị trí còn trống.</h3>
+          <h3>{{ jobDetail.experience }}+ Năm kinh nghiệm.</h3>
         </div>
       </a-col>
     </a-row>
@@ -123,24 +120,50 @@
 </template>
 
 <script>
-import { getDetailJobs } from "../../api/http-common";
-import VueMarkdown from "vue-markdown";
+import { getDetailJobs, uploadCv } from "../../api/http-common";
+// import VueMarkdown from "vue-markdown";
 export default {
   name: "JobsDetail",
   data() {
     return {
-      jobDetail: {}
+      jobDetail: {},
+      applications: {
+        name: "",
+        phone: "",
+        email: "",
+        cv: null
+      }
     };
+  },
+  methods: {
+    getData(e) {
+      const { name, value } = e.target;
+      this.applications[name] = value;
+    },
+    getFileCv(e) {
+      this.applications.cv = e.target.files[0];
+    },
+    onSubmitCv() {
+      uploadCv(this, "/upload", this.applications.cv);
+    },
+    onClearCv() {
+      const newCv = {
+        name: "",
+        phone: "",
+        email: "",
+        cv: null
+      };
+      this.applications = newCv;
+    }
   },
   created() {
     const jobsId = this.$router.currentRoute.params.jobsId;
     getDetailJobs(this, jobsId);
   },
   components: {
-    VueMarkdown
+    // "vue-markdown": VueMarkdown
   }
 };
 </script>
 
-<style src='./style/detail.scss' lang='scss'>
-</style>
+<style src="./style/detail.scss" lang="scss"></style>
