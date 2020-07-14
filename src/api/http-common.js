@@ -1,5 +1,6 @@
 import api from "./api";
 import axios from "axios";
+// import qs from 'qs'
 import { Modal } from "ant-design-vue";
 const baseApi = axios.create({
   baseURL: `${api.API_ROOT}`,
@@ -86,6 +87,24 @@ const getNewsByCategories = (thisObj, categoriesId) => {
     });
 };
 // upload data
+const uploadApplications = (thisObj, path, params) => {
+  const { name, phone, email, cv } = params;
+  let formData = new FormData();
+  formData.append('cv', cv);
+  formData.append('name', name);
+  formData.append('phone', phone);
+  formData.append('email', email);
+  baseApi.post(path, formData, {
+    headers: {
+      'Accept': 'application/json',
+      'Content-Type': 'multipart/form-data',
+    }
+  }).then(res => {
+    console.log(res)
+  }).catch(e => {
+    console.log(e.response)
+  })
+}
 const uploadCv = (thisObj, path, file) => {
   let formData = new FormData();
   formData.append('files', file)
@@ -100,4 +119,4 @@ const uploadCv = (thisObj, path, file) => {
   })
 }
 
-export { getDataJobs, getDataNews, getDetailNews, getTotalJobs, getDetailJobs, uploadCv };
+export { getDataJobs, getDataNews, getDetailNews, getTotalJobs, getDetailJobs, uploadCv, uploadApplications };

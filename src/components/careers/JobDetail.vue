@@ -120,7 +120,7 @@
 </template>
 
 <script>
-import { getDetailJobs, uploadCv } from "../../api/http-common";
+import { getDetailJobs, uploadApplications } from "../../api/http-common";
 // import VueMarkdown from "vue-markdown";
 export default {
   name: "JobsDetail",
@@ -144,7 +144,7 @@ export default {
       this.applications.cv = e.target.files[0];
     },
     onSubmitCv() {
-      uploadCv(this, "/upload", this.applications.cv);
+      uploadApplications(this, "/cvs", this.applications);
     },
     onClearCv() {
       const newCv = {
