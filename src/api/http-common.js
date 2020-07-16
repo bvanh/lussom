@@ -1,16 +1,11 @@
 import api from "./api";
 import axios from "axios";
+import { alertError, alertSuccess } from '../ultils/alert'
 // import qs from 'qs'
-import { Modal } from "ant-design-vue";
 const baseApi = axios.create({
   baseURL: `${api.API_ROOT}`,
 });
-function alertError(statusCode, message) {
-  Modal.error({
-    title: statusCode,
-    content: message,
-  });
-}
+
 const getDataJobs = (thisObj, path, params) => {
   baseApi
     .get(path, { params })
@@ -87,36 +82,38 @@ const getNewsByCategories = (thisObj, categoriesId) => {
     });
 };
 // upload data
-const uploadApplications = (thisObj, path, params) => {
-  const { name, phone, email, cv } = params;
-  let formData = new FormData();
-  formData.append('cv', cv);
-  formData.append('name', name);
-  formData.append('phone', phone);
-  formData.append('email', email);
+const uploadApplications = async (thisObj, path, params, file) => {
+  let formData = await new FormData();
+  await formData.append('files.file', file, file.name);
+  await formData.append('data', JSON.stringify(params));
   baseApi.post(path, formData, {
     headers: {
-      'Accept': 'application/json',
       'Content-Type': 'multipart/form-data',
     }
-  }).then(res => {
+  }).then((res) => {
     console.log(res)
+    if (res.status === 200) {
+      thisObj.applications = {};
+      thisObj.cv = null;
+      alertSuccess('Gửi CV thành công !')
+    }
   }).catch(e => {
     console.log(e.response)
   })
 }
-const uploadCv = (thisObj, path, file) => {
-  let formData = new FormData();
-  formData.append('files', file)
-  baseApi.post(path, formData, {
-    headers: {
-      'Content-Type': 'multipart/form-data'
-    }
-  }).then(res => {
-    console.log(res)
-  }).catch(e => {
-    console.log(e.response)
-  })
+// send feedback
+const sendFeedback = (thisObj, params) => {
+  baseApi.post(api.FEEDBACK, params)
+    .then(res => {
+      if(res.status===200){
+        thisObj.indexFeedbacks = {};
+        alertSuccess('Gửi feedback thành công !')
+      }
+    })
+    .catch(e => {
+      console.log(e)
+    })
 }
 
-export { getDataJobs, getDataNews, getDetailNews, getTotalJobs, getDetailJobs, uploadCv, uploadApplications };
+
+export { getDataJobs, getDataNews, getDetailNews, getTotalJobs, getDetailJobs, uploadApplications, sendFeedback };

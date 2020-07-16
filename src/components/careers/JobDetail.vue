@@ -61,7 +61,7 @@
                 </label>
                 <span>
                   {{
-                  applications.cv === null ? "Chưa chọn tập tin..." : applications.cv.name
+                  cv === null ? "Chưa chọn tập tin..." : cv.name
                   }}
                 </span>
               </div>
@@ -121,6 +121,12 @@
 
 <script>
 import { getDetailJobs, uploadApplications } from "../../api/http-common";
+import {
+  validatePhone,
+  validateEmail,
+  validateUsername,
+  validateFileAndFeedback
+} from "../../ultils/checkInfo";
 // import VueMarkdown from "vue-markdown";
 export default {
   name: "JobsDetail",
@@ -130,9 +136,9 @@ export default {
       applications: {
         name: "",
         phone: "",
-        email: "",
-        cv: null
-      }
+        email: ""
+      },
+      cv: null
     };
   },
   methods: {
@@ -141,17 +147,24 @@ export default {
       this.applications[name] = value;
     },
     getFileCv(e) {
-      this.applications.cv = e.target.files[0];
+      this.cv = e.target.files[0];
     },
     onSubmitCv() {
-      uploadApplications(this, "/cvs", this.applications);
+      const { name, phone, email } = this.applications;
+      if (
+        validateUsername(name) &&
+        validateEmail(email) &&
+        validatePhone(phone) &&
+        validateFileAndFeedback(this.cv,'file đính kèm !')
+      ) {
+        uploadApplications(this, "/cvs", this.applications, this.cv);
+      }
     },
     onClearCv() {
       const newCv = {
         name: "",
         phone: "",
-        email: "",
-        cv: null
+        email: ""
       };
       this.applications = newCv;
     }

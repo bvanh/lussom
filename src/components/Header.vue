@@ -1,9 +1,11 @@
 <template>
   <div class="menu-bar">
-    <Slide>
-      <router-link to="/">Home</router-link>
-      <router-link to="/about">About</router-link>
-    </Slide>
+    <Reveal > 
+      <router-link to="/"><span>TRANG<span style="visibility:hidden">i</span>CHỦ</span></router-link>
+      <router-link to="/news"><span>TIN<span style="visibility:hidden">i</span>TỨC</span></router-link>
+      <router-link to="/careers"><span>TUYỂN<span style="visibility:hidden">i</span>DỤNG</span></router-link>
+      <router-link to="/contact"><span>LIÊN<span style="visibility:hidden">i</span>HỆ</span></router-link>
+    </Reveal>
     <router-link to="/" class="logo">
       <img
         :src="importImgHeader('logoLussom.png')"
@@ -23,7 +25,7 @@
           <router-link style="outline: none;" to="/careers">TUYỂN DỤNG</router-link>
         </li>
         <li>
-          <router-link style="outline: none;" to="/about">LIÊN HỆ</router-link>
+          <router-link style="outline: none;" to="/contact">LIÊN HỆ</router-link>
         </li>
       </ul>
     </a-row>
@@ -31,12 +33,12 @@
 </template>
 
 <script>
-import { Slide } from "vue-burger-menu";
+import { Reveal } from "vue-burger-menu";
 import { imgHeader } from "../ultils/importImg";
 export default {
   name: "Header",
   components: {
-    Slide
+    Reveal
   },
   methods: {
     importImgHeader(img) {
@@ -46,12 +48,15 @@ export default {
 };
 </script>
 
-<style scoped lang="scss">
+<style  lang="scss" scoped>
 $menuMobie-width: 959px;
 @mixin tablet {
   @media (max-width: #{$menuMobie-width}) {
     @content;
   }
+}
+.bm-menu{
+  background-color: black !important;
 }
 .menu-bar {
   position: absolute;

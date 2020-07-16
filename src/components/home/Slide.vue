@@ -9,15 +9,14 @@
         backgroundImage: getBackgroundUrl(item.img),
       }"
       >
-        <div>
-          <div>
-            <div>
-              <h3 class="slide-title">{{ item.title }}</h3>
-              <span class="slide-content">{{ item.content }}</span>
-              <span class="slide-content-mobile">{{ item.contentMobile }}</span>
-            </div>
-          </div>
-        </div>
+        <a-row>
+          <a-col :span="12">
+            <h3 class="slide-title">{{ item.title }}</h3>
+            <span class="slide-content">{{ item.content }}</span>
+            <span class="slide-content-mobile">{{ item.contentMobile }}</span>
+          </a-col>
+          <a-col :span="12"></a-col>
+        </a-row>
       </swiper-slide>
       <div class="swiper-pagination-h" slot="pagination">
         <div class="swiper-pagination"></div>
