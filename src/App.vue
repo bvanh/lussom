@@ -51,4 +51,7 @@ export default {
     display: none;
   }
 }
+.ant-col{
+  text-align: left;
+}
 </style>

@@ -126,8 +126,8 @@ td.mat-cell:last-of-type {
 }
 .stick-expried {
   background: #b8b7b5;
-  padding: 0.15rem 0.7rem;
-  border-radius: 4px;
+  padding: 4px 5px;
+  border-radius: 3px;
   margin-left: 1rem;
   color: white;
   font-size: 0.8rem;
@@ -135,4 +135,7 @@ td.mat-cell:last-of-type {
   @media (max-width: 1080px) {
     margin: 0;
   }
+}
+.ant-pagination-prev{
+  margin-right:3px !important;
 }

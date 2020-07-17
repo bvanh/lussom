@@ -2,6 +2,7 @@ $desktop1: 1600px;
 $desktop2: 1280px;
 $desktop3: 768px;
 $mobile: 414px;
+$slideMobile: "(max-width:991px)";
 $minDesktop1: "(min-width:1600px)";
 $inDesktop2: "(min-width: 1280px) and (max-width: 1599px)";
 $inDesktop3: "(max-width: 1024px) and (min-width: 769px)";
@@ -31,95 +32,115 @@ $mediaDesktop2: "(min-width:1601px)";
 .slide-wraper {
   position: relative;
 }
-// .slider-container {
-//   min-height: 100vh;
-//   background-size: cover !important;
-//   background-position: center;
-//   display: flex;
-//   align-items: center;
-//   @media #{$inDesktop} {
-//     div {
-//       width: 90%;
-//     }
-//   }
-//   @media #{$minDesktop1} {
-//     min-height: 55rem;
-//     div {
-//       max-width: 1440px !important;
-//       //   margin: 0 auto;
-//     }
-//   }
-//   @media #{$inDesktop2} {
-//     min-height: 43rem;
-//   }
-//   @media #{$inDesktop3} {
-//     min-height: 90vh;
-//   }
-//   @include tablet() {
-//     min-height: 60vh;
-//     div {
-//       background: #0801016b;
-//       width: 100%;
-//     }
-//     div > div {
-//       width: 90%;
-//       margin: 0 auto;
-//     }
-//     div > div > div {
-//       width: 100%;
-//     }
-//   }
-//   @include mobile() {
-//     div > div {
-//       max-width: 95%;
-//       margin: 0 auto;
-//     }
-//     .slide-content-mobile {
-//       font-size: 0.85rem !important;
-//     }
-//     div > div > div {
-//       width: 100%;
-//     }
-//     .slide-title {
-//       font-size: 2rem;
-//       line-height: 2rem;
-//       margin-bottom: 0.5rem !important;
-//     }
-//   }
-// }
-// .slider-container > div {
-//   background: #08010100;
-//   height: 100%;
-//   display: flex;
-//   align-items: center;
-// }
-// .slider-container > div {
-//   margin: 0 auto;
-// }
-// .slider-container > div > div > div {
-//   width: 50%;
-//   display: flex;
-//   flex-direction: column;
-// }
-// .slide-title {
-//   font-size: 5rem;
-//   text-align: left;
-//   width: 100%;
-//   line-height: 4rem;
-//   font-family: "Source Sans Pro", sans-serif !important;
-//   font-style: italic;
-//   font-weight: 900;
-//   color: white;
-//   margin-bottom: 1.5rem;
-// }
-// .slide-content,
-// .slide-content-mobile {
-//   color: white;
-//   font-size: 15px;
-//   line-height: 1.6;
-//   letter-spacing: 1px;
-//   text-align: justify;
-// }
+@media #{$slideMobile}{
+  .slide-container{
+    z-index: 1;
+  }
+  .slide::after {
+    position: absolute;
+    content: " ";
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 0;
+    background-color: #0801016b;
+  }
+}
+.slide {
+  min-height: 100vh;
+  background-size: cover !important;
+  background-position: center;
+  display: flex;
+  align-items: center;
+  position: relative;
+  .slide-container {
+    width: 90%;
+    margin: 0 auto;
+  }
+  .slide-container div {
+    text-align: justify;
+  }
+  @media #{$inDesktop} {
+  }
+  @media #{$minDesktop1} {
+    min-height: 55rem;
+    .slide-container {
+      max-width: 1440px !important;
+      //   margin: 0 auto;
+    }
+  }
+  @media #{$inDesktop2} {
+    min-height: 43rem;
+  }
+  @media #{$inDesktop3} {
+    min-height: 90vh;
+  }
+  @include tablet() {
+    min-height: 60vh;
+    // div {
+    //   background: #0801016b;
+    //   width: 100%;
+    // }
+    // div > div {
+    //   width: 90%;
+    //   margin: 0 auto;
+    // }
+    // div > div > div {
+    //   width: 100%;
+    // }
+  }
+    @include mobile() {
+      // div > div {
+      //   max-width: 95%;
+      //   margin: 0 auto;
+      // }
+      .slide-content-mobile {
+        font-size: 0.85rem !important;
+      }
+      // div > div > div {
+      //   width: 100%;
+      // }
+      .slide-title {
+        font-size: 2rem;
+        line-height: 2rem;
+        margin-bottom: 0.5rem !important;
+      }
+    }
+  
+  // .slider-container > div {
+  //   background: #08010100;
+  //   height: 100%;
+  //   display: flex;
+  //   align-items: center;
+  // }
+  // .slider-container > div {
+  //   margin: 0 auto;
+  // }
+  // .slider-container > div > div > div {
+  //   width: 50%;
+  //   display: flex;
+  //   flex-direction: column;
+}
+.slide-title {
+  font-size: 5rem;
+  text-align: left;
+  width: 100%;
+  line-height: 4rem;
+  font-family: "Source Sans Pro", sans-serif !important;
+  font-style: italic;
+  font-weight: 900;
+  color: white;
+  margin-bottom: 1.5rem;
+}
+.slide-content,
+.slide-content-mobile {
+  color: white;
+  font-size: 15px;
+  line-height: 1.6;
+  letter-spacing: 1px;
+  text-align: justify;
+}
 .swiper-pagination-h {
   bottom: 29% !important;
   width: 100%;
@@ -128,6 +149,12 @@ $mediaDesktop2: "(min-width:1601px)";
   // left: 5% !important;
   @media #{$mediaDesktop1} {
     bottom: 21.5% !important;
+  }
+  @media #{$slideMobile}{
+    bottom: 20% !important;
+  }
+  @include mobile(){
+    bottom: 15px !important;
   }
   .swiper-pagination {
     position: relative !important;
@@ -138,9 +165,12 @@ $mediaDesktop2: "(min-width:1601px)";
       max-width: 1440px !important;
       // position:  relative !important;
     }
+    @include mobile(){
+      text-align: right !important;
+    }
   }
 }
-.swiper-pagination-bullet {
+.swiper-pagination .swiper-pagination-bullet {
   background-image: url(../../../assets/header/slide-dots.png) !important;
   background-size: cover !important;
   background-position: center !important;
@@ -151,15 +181,22 @@ $mediaDesktop2: "(min-width:1601px)";
   margin-right: 8px !important;
   background-color: #0000ff00 !important;
   opacity: 1 !important;
+  @include mobile(){
+    width: 12px !important;
+    height: 12px !important;
+  }
 }
 
-.swiper-pagination-bullet-active {
+.swiper-pagination .swiper-pagination-bullet-active {
   background-image: url(../../../assets/header/slide-active-dots.png) !important;
   background-size: contain !important;
   background-position: center !important;
   background-repeat: no-repeat !important;
-  width: 35px !important;
+  width: 32px !important;
   background-color: #0000ff00 !important;
+  @include mobile(){
+    width: 27px !important;
+  }
 }
 // .myPoint {
 //   max-width: 90%;
@@ -309,22 +346,22 @@ $mediaDesktop2: "(min-width:1601px)";
 //     width: 80%;
 //   }
 // }
-// @media (max-width: 414px) {
-//   .slide-content {
-//     display: none;
-//   }
-//   .slide-content-mobile {
-//     display: block;
-//   }
-// }
-// @media (min-width: 415px) {
-//   .slide-content {
-//     display: block;
-//   }
-//   .slide-content-mobile {
-//     display: none;
-//   }
-// }
+@media (max-width: 414px) {
+  .slide-content {
+    display: none;
+  }
+  .slide-content-mobile {
+    display: block;
+  }
+}
+@media (min-width: 415px) {
+  .slide-content {
+    display: block;
+  }
+  .slide-content-mobile {
+    display: none;
+  }
+}
 .rectangle {
   position: absolute;
   bottom: 0;

@@ -10,7 +10,7 @@
       </div>
     </div>
     <a-row class="detail-container" type="flex" justify="space-between">
-      <a-col :md="18" class="job-require">
+      <a-col :md="16" class="job-require">
         <div class="frame">
           <h2>Why should you apply for this position</h2>
           <vue-simple-markdown :source="jobDetail.reason"></vue-simple-markdown>
@@ -56,14 +56,12 @@
               Resume/CV*
               <div>
                 <label for="cv">
-                  <img src="../../assets/detail/attach.png" />Attach
-                  resume/CV
-                </label>
-                <span>
+                  <img src="../../assets/detail/attach.png" /><span>
                   {{
                   cv === null ? "Chưa chọn tập tin..." : cv.name
                   }}
                 </span>
+                </label>
               </div>
               <input
                 placeholder="Your CV"
@@ -98,7 +96,7 @@
           </div>-->
         </div>
       </a-col>
-      <a-col :md="6" class="job-more-info">
+      <a-col :md="8" class="job-more-info">
         <div>
           <!-- <h2>{{ jobsDetail.title }}</h2> -->
           <div class="salary">

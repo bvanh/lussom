@@ -19,6 +19,7 @@ $screen-xl-min: 1500px;
   flex-direction: column;
   padding: 2rem;
   border-top: 1px solid rgba(0, 0, 0, 0.14) !important;
+  margin-top: 1rem;
   @media (max-width: 600px) {
     padding: 0;
   }
@@ -160,7 +161,7 @@ $screen-xl-min: 1500px;
   }
 }
 .job-more-info {
-  & div:first-child {
+  div:nth-child(1) {
     padding: 1rem;
     background-color: #e8e6e6;
     border-radius: 5px;
@@ -178,6 +179,7 @@ $screen-xl-min: 1500px;
 }
 .salary,
 .location {
+  padding: 0 !important;
   display: flex;
   align-items: baseline;
   flex-direction: row;

@@ -1,7 +1,7 @@
 <template>
   <div class="footer">
     <a-row type="flex" justify="space-between">
-      <a-col class="footer-info" :lg="{span:16}" :md="{span:24}">
+      <a-col class="footer-info" :lg="{ span: 16 }" :md="{ span: 24 }">
         <div>
           <p>Công ty trách nghiệm hữu hạn Lussom Co.Ltd.</p>
           <p>
@@ -11,27 +11,22 @@
           <p>Email: lussom.co@gmail.com</p>
           <p>Điện thoại: 02438453888.</p>
           <p>Chịu trách nghiệm nội dung: Shin Dongseok.</p>
-          <p>Giấy phép cung cấp dịch vụ trò chơi điện tử G1 trên mạng sô 69/GP-BTTTT do Bộ Thông tin và Truyền thông cấp ngày 26/02/2020.</p>
+          <p>
+            Giấy phép cung cấp dịch vụ trò chơi điện tử G1 trên mạng sô
+            69/GP-BTTTT do Bộ Thông tin và Truyền thông cấp ngày 26/02/2020.
+          </p>
         </div>
         <div class="logo">
           <img :src="importImgHeader('logoLussom.png')" />
           <p style="margin: 0;">Copyright ©2020 Lussom. All Rights Reserved.</p>
         </div>
       </a-col>
-      <a-col class="footer-menu" :lg="{span:8}">
+      <a-col class="footer-menu" :lg="{ span: 8 }">
         <ul class="navigation-items">
-          <li routerLink="/home" routerLinkActive="isNav-active">
-            <a>TRANG CHỦ</a>
-          </li>
-          <li routerLink="/news" routerLinkActive="isNav-active">
-            <a>TIN TỨC</a>
-          </li>
-          <li routerLink="/careers" routerLinkActive="isNav-active">
-            <a>TUYỂN DỤNG</a>
-          </li>
-          <li routerLink="/contact" routerLinkActive="isNav-active">
-            <a>LIÊN HỆ</a>
-          </li>
+          <router-link to="/">TRANG CHỦ</router-link>
+          <router-link to="/news">TIN TỨC</router-link>
+          <router-link to="/careers">TUYỂN DỤNG</router-link>
+          <router-link to="/contact">LIÊN HỆ</router-link>
         </ul>
       </a-col>
     </a-row>
@@ -50,13 +45,16 @@ export default {
 };
 </script>
 
-<style lang='scss' scoped>
+<style lang="scss" scoped>
 /* @import url("https://fonts.googleapis.com/css2?family=Source+Sans+Pro:ital,wght@0,200;0,300;0,600;0,700;1,200;1,400;1,700&display=swap"); */
 $desktop: "(max-width: 1440px)";
 a {
   text-decoration: none;
   color: lightgray;
   font-family: "Source Sans Pro", sans-serif;
+}
+a.router-link-exact-active {
+  color: #fafafa;
 }
 a:hover,
 a:active {
@@ -167,7 +165,7 @@ li {
   }
   .logo {
     // max-width: 25% !important;
-    img{
+    img {
       width: 25%;
     }
   }

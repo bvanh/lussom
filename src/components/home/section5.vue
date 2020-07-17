@@ -35,15 +35,15 @@
           <p style="margin-top:6px">Vị trí trống: {{ slide.vacancies }}</p>
           <p>Kinh nghiệm: {{ slide.experience }}</p>
           <p>Bộ phận: {{ slide.categories }}</p>
-          <!-- <p>Ngày hết hạn: {{ slide.expried | date: "dd-MM-yyyy" }}</p> -->
-          <router-link :to="`/careers/detail/${ slide.id }`">
-            <a-button mat-button class="btn-read-more-job">Read more >></a-button>
-          </router-link>
+          <p>Ngày hết hạn: {{ convertDateStr(slide.expried)}}</p>
+          <a-button mat-button class="btn-read-more-job">
+            <router-link :to="{ name: 'jobsDetail', params: { jobsId: slide.id } }">Xem thêm</router-link>
+          </a-button>
         </div>
       </swiper-slide>
       <div class="swiper-pagination2" slot="pagination"></div>
       <!-- <div class="swiper-button-prev" slot="button-prev"></div>
-      <div class="swiper-button-next" slot="button-next"></div> -->
+      <div class="swiper-button-next" slot="button-next"></div>-->
     </swiper>
   </div>
 </template>
@@ -51,16 +51,16 @@
 <script>
 import { Swiper, SwiperSlide } from "vue-awesome-swiper";
 import { getDataJobs } from "../../api/http-common";
+import { convertDate } from "../../ultils/resolve";
 import "swiper/css/swiper.css";
 export default {
   name: "Home",
   data() {
     return {
       swiperOptions: {
-        slidesPerView: 4,
-        spaceBetween: 10,
+        slidesPerView: 5,
+        spaceBetween: 80,
         freeMode: false,
-
         loop: true,
         navigation: {
           nextEl: ".swiper-button-next",
@@ -68,7 +68,8 @@ export default {
         },
         breakpoints: {
           0: {
-            slidesPerView: 1,
+            slidesPerView: 2,
+            spaceBetween: 10,
             margin: 10
           },
           576: {
@@ -85,10 +86,11 @@ export default {
             slidesPerView: 4
           }
         },
+        
         pagination: {
           el: ".swiper-pagination2",
           clickable: true,
-          type: "fraction"
+          // type: "dots"
           // renderBullet: function(index, className) {
           //   return '<span class="' + className + '"><span>' + index + "</span></span>";
           // }
@@ -121,6 +123,9 @@ export default {
       } else {
         return false;
       }
+    },
+    convertDateStr(date) {
+      return convertDate(date);
     }
   },
   components: {

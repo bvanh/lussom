@@ -2,20 +2,20 @@
   <div class="slide-wraper">
     <swiper :options="swiperOptions">
       <swiper-slide
-        class="slider-container"
+        class="slide"
         v-for="item in carouselItems"
         :key="item.id"
         :style="{
         backgroundImage: getBackgroundUrl(item.img),
       }"
       >
-        <a-row>
-          <a-col :span="12">
+        <a-row class="slide-container">
+          <a-col :lg="{span:12}" :xl="{span:9}" :span="24" align="center">
             <h3 class="slide-title">{{ item.title }}</h3>
             <span class="slide-content">{{ item.content }}</span>
             <span class="slide-content-mobile">{{ item.contentMobile }}</span>
           </a-col>
-          <a-col :span="12"></a-col>
+          <a-col :span="12" :xl="{span:15}"></a-col>
         </a-row>
       </swiper-slide>
       <div class="swiper-pagination-h" slot="pagination">
@@ -110,4 +110,5 @@ export default {
 </script>
 
 <style src='./style/Slide.scss' lang='scss'>
+
 </style>

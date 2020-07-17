@@ -1,33 +1,72 @@
 <template>
   <div class="menu-bar">
-    <Reveal > 
-      <router-link to="/"><span>TRANG<span style="visibility:hidden">i</span>CHỦ</span></router-link>
-      <router-link to="/news"><span>TIN<span style="visibility:hidden">i</span>TỨC</span></router-link>
-      <router-link to="/careers"><span>TUYỂN<span style="visibility:hidden">i</span>DỤNG</span></router-link>
-      <router-link to="/contact"><span>LIÊN<span style="visibility:hidden">i</span>HỆ</span></router-link>
+    <Reveal>
+      <router-link to="/">
+        <span>
+          TRANG
+          <span style="visibility:hidden">i</span>CHỦ
+        </span>
+      </router-link>
+      <router-link to="/news">
+        <span>
+          TIN
+          <span style="visibility:hidden">i</span>TỨC
+        </span>
+      </router-link>
+      <router-link to="/careers">
+        <span>
+          TUYỂN
+          <span style="visibility:hidden">i</span>DỤNG
+        </span>
+      </router-link>
+      <router-link to="/contact">
+        <span>
+          LIÊN
+          <span style="visibility:hidden">i</span>HỆ
+        </span>
+      </router-link>
     </Reveal>
-    <router-link to="/" class="logo">
+    <!-- <router-link to="/" class="logo">
       <img
         :src="importImgHeader('logoLussom.png')"
         width="75%"
         style="cursor: pointer;outline: none;"
       />
-    </router-link>
+    </router-link>-->
     <a-row type="flex" justify="center" class="menu">
-      <ul class="navigation-items">
-        <li>
-          <router-link style="outline: none;" to="/">TRANG CHỦ</router-link>
-        </li>
-        <li>
-          <router-link style="outline: none;" to="/news">TIN TỨC</router-link>
-        </li>
-        <li>
-          <router-link style="outline: none;" to="/careers">TUYỂN DỤNG</router-link>
-        </li>
-        <li>
-          <router-link style="outline: none;" to="/contact">LIÊN HỆ</router-link>
-        </li>
-      </ul>
+      <a-col>
+        <router-link to="/" class="logo">
+          <img
+            :src="importImgHeader('logoLussom.png')"
+            width="75%"
+            style="cursor: pointer;outline: none;"
+          />
+        </router-link>
+      </a-col>
+      <a-col>
+        <ul class="navigation-items">
+          <li>
+            <router-link style="outline: none;" to="/">
+              TRANG CHỦ
+            </router-link>
+          </li>
+          <li>
+            <router-link style="outline: none;" to="/news">
+              TIN TỨC
+            </router-link>
+          </li>
+          <li>
+            <router-link style="outline: none;" to="/careers">
+              TUYỂN DỤNG
+            </router-link>
+          </li>
+          <li>
+            <router-link style="outline: none;" to="/contact">
+              LIÊN HỆ
+            </router-link>
+          </li>
+        </ul>
+      </a-col>
     </a-row>
   </div>
 </template>
@@ -38,47 +77,58 @@ import { imgHeader } from "../ultils/importImg";
 export default {
   name: "Header",
   components: {
-    Reveal
+    Reveal,
   },
   methods: {
     importImgHeader(img) {
       return imgHeader[img];
-    }
-  }
+    },
+  },
 };
 </script>
 
-<style  lang="scss" scoped>
+<style lang="scss" scoped>
 $menuMobie-width: 959px;
 @mixin tablet {
   @media (max-width: #{$menuMobie-width}) {
     @content;
   }
 }
-.bm-menu{
+.bm-menu {
   background-color: black !important;
 }
 .menu-bar {
   position: absolute;
   top: 0;
   z-index: 2;
-  background: rgba(35, 111, 152, 0.76);
+  background: rgba(63, 146, 191, 0.72);
   font-weight: bold;
-  display: flex;
-  justify-content: space-between;
+  // display: flex;
+  // justify-content: space-between;
   padding: 0 !important;
   width: 100%;
   @include tablet {
     height: 3rem;
   }
 }
+a .btn-active-bottom {
+  display: none;
+}
 a.router-link-exact-active {
   color: #fafafa;
+  position: relative;
+  .btn-active-bottom {
+    display: block;
+    position: absolute;
+    bottom: 0;
+    left: 34%;
+  }
+  // background-image: url('../assets/header/bottom_menu.png');
 }
 /* @import url("https://fonts.googleapis.com/css2?family=Source+Sans+Pro:ital,wght@0,200;0,300;0,600;0,700;1,200;1,400;1,700&display=swap"); */
 a {
   text-decoration: none;
-  color: lightgray;
+  color: #99dcff;
   font-family: "Source Sans Pro", sans-serif;
   letter-spacing: 0.1rem;
   font-size: 20px;
@@ -103,13 +153,10 @@ a:active {
   outline: none;
 }
 .logo {
-  position: absolute;
-  top: 1.4rem;
-  left: 5%;
+  position: relative;
   text-align: left;
   @include tablet() {
     top: 0.4rem;
-    right: 5%;
   }
 }
 @media (max-width: 599px) {
@@ -135,6 +182,7 @@ a:active {
   position: relative;
   align-items: center !important;
   justify-content: space-between !important;
+  z-index: 0;
 }
 @media (min-width: 1600px) {
   .menu {
@@ -144,15 +192,11 @@ a:active {
   }
 }
 @media (max-width: 960px) {
-  .logo {
-    position: relative;
-    left: 0;
-  }
   .menu {
-    display: none !important;
+    justify-content: flex-end !important;
+    div:nth-child(2) {
+      display: none !important;
+    }
   }
-  //   mat-icon {
-  //     margin-left: 1rem;
-  //   }
 }
 </style>
