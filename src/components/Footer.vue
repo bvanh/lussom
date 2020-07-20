@@ -98,6 +98,7 @@ li {
     font-weight: bold;
     height: 100%;
     align-items: baseline;
+    align-items: center;
     @media #{$desktop} {
       max-width: 90%;
     }
@@ -183,7 +184,7 @@ li {
 }
 @media only screen and (max-width: 320px) {
   .logo {
-    max-width: 18% !important;
+    max-width: 100% !important;
   }
   .coppyright {
     max-width: 100%;

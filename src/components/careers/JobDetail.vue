@@ -75,7 +75,7 @@
             </span>
             <div class="submit-btn">
               <div style="width: 50%;">
-                <button @click="onSubmitCv" class="submit-btn-ok">Submit Now</button>
+                <button @click="onSubmitCv" class="submit-btn-ok">Submit</button>
                 <button @click="onClearCv" class="submit-btn-cancel">Clear</button>
               </div>
             </div>

@@ -124,6 +124,7 @@ const columns = [
   {
     title: "Title",
     dataIndex: "name",
+    // fixed: 'left',
     scopedSlots: { customRender: "name" }
   },
   {

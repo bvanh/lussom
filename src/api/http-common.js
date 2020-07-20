@@ -37,7 +37,7 @@ const getDetailJobs = (thisObj, jobsId) => {
     .get(`/recruitments/${jobsId}`)
     .then((response) => {
       thisObj.jobDetail = response.data;
-      console.log(response.data)
+      // console.log(response.data)
     })
     .catch((e) => {
       const { statusCode, message } = e.response.data;
@@ -49,7 +49,7 @@ const getDataNews = (thisObj, path, params) => {
     .get(path, { params })
     .then((response) => {
       thisObj.listNews = response.data;
-      console.log(response.data);
+      // console.log(response.data);
     })
     .catch((e) => {
       const { statusCode, message } = e.response.data;
@@ -61,7 +61,7 @@ const getDetailNews = (thisObj, newsId) => {
     .get(`/posts/${newsId}`)
     .then((response) => {
       thisObj.newsDetail = response.data;
-      console.log(response.data);
+      // console.log(response.data);
       getNewsByCategories(thisObj, response.data.categories[0].id);
     })
     .catch((e) => {
@@ -74,7 +74,7 @@ const getNewsByCategories = (thisObj, categoriesId) => {
     .get(`${api.API_CATEGORIES}/${categoriesId}`)
     .then((response) => {
       thisObj.newsByCategories = response.data.posts;
-      console.log(response.data);
+      // console.log(response.data);
     })
     .catch((e) => {
       const { statusCode, message } = e.response.data;
@@ -91,7 +91,7 @@ const uploadApplications = async (thisObj, path, params, file) => {
       'Content-Type': 'multipart/form-data',
     }
   }).then((res) => {
-    console.log(res)
+    // console.log(res)
     if (res.status === 200) {
       thisObj.applications = {};
       thisObj.cv = null;

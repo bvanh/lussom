@@ -1,28 +1,19 @@
 <template>
   <div class="menu-bar">
-    <Reveal>
+    <Reveal :closeOnNavigation="true">
       <router-link to="/">
-        <span>
-          TRANG
-          <span style="visibility:hidden">i</span>CHỦ
-        </span>
+        <span>TRANG<span style="visibility:hidden">i</span>CHỦ </span>
       </router-link>
       <router-link to="/news">
-        <span>
-          TIN
-          <span style="visibility:hidden">i</span>TỨC
+        <span>TIN<span style="visibility:hidden">i</span>TỨC
         </span>
       </router-link>
       <router-link to="/careers">
-        <span>
-          TUYỂN
-          <span style="visibility:hidden">i</span>DỤNG
+        <span>TUYỂN<span style="visibility:hidden">i</span>DỤNG
         </span>
       </router-link>
       <router-link to="/contact">
-        <span>
-          LIÊN
-          <span style="visibility:hidden">i</span>HỆ
+        <span>LIÊN<span style="visibility:hidden">i</span>HỆ
         </span>
       </router-link>
     </Reveal>
@@ -182,7 +173,7 @@ a:active {
   position: relative;
   align-items: center !important;
   justify-content: space-between !important;
-  z-index: 0;
+  z-index: -1;
 }
 @media (min-width: 1600px) {
   .menu {

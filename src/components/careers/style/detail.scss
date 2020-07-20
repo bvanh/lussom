@@ -76,7 +76,7 @@ $screen-xl-min: 1500px;
     margin-right: 5px;
   }
   & span {
-    width: 50%;
+    width: 70%;
     position: relative;
     overflow: hidden !important;
     height: 1.1rem;
@@ -85,9 +85,9 @@ $screen-xl-min: 1500px;
     padding: 0 5px;
     -webkit-box-orient: vertical;
     -webkit-line-clamp: 1;
-    @media (max-width: 414px) {
-      display: none;
-    }
+    // @media (max-width: 414px) {
+    //   display: none;
+    // }
   }
 }
 .submit-btn {
