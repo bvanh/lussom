@@ -11,10 +11,6 @@ function validateUsername(username) {
     }
 
 }
-// function validatePassword(password) {
-//   var re = /^(?=.*[A-Za-z0-9])[\w\d$@$!%*#?&`'"~^*(){}<>.\/\[\]=+-_|]{6,20}$/;
-//   return re.test(password);
-// }
 function validatePhone(phone) {
     let re = /(03|07|08|09|01[2|6|8|9])+([0-9]{8})\b/;
     let testPhone = re.test(phone)
